@@ -1,0 +1,36 @@
+# File: WatchLater.yaml
+# Scenario: Watch Later
+# intent: Open the app, mark a podcast to watch later, and verify it's in the Watch Later list.
+
+appId: com.app
+env:
+  TITLE: "RNR 257 - META RESPONDS! How can we improve React Native, part 2"
+  FAVORITES_TEXT: "Switch on to only show favorites"
+
+---
+- runFlow: Login.yaml
+- tapOn:
+    text: "Podcast"
+- assertVisible: "Explore Podcasts"
+
+# Explore podcasts and mark one to watch later
+- scrollUntilVisible:
+    element:
+      text: "Exciting Podcast"
+    direction: DOWN
+    timeout: 50000
+    speed: 40
+    visibilityPercentage: 100
+- tapOn: "Exciting Podcast"
+- assertVisible: "Podcast Details"
+- tapOn:
+    text: "Watch Later"
+- assertVisible: "Added to Watch Later"
+- tapOn:
+    text: "Back to Podcasts"
+
+# Verify the podcast is in the Watch Later list
+- tapOn:
+    text: "Watch Later"
+- assertVisible: "Your Watch Later List"
+- assertVisible: "Exciting Podcast"

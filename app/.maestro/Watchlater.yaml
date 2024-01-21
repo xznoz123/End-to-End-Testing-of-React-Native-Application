@@ -1,0 +1,22 @@
+# Verify the podcast is in the Watch Later list
+- tapOn:
+    text: "Watch Later"
+- assertVisible: "Your Watch Later List"
+- assertVisible: "Exciting Podcast"
+
+# Open the podcast details from Watch Later list
+- tapOn: "Exciting Podcast"
+- assertVisible: "Podcast Details"
+
+# Mark the podcast as watched
+- tapOn:
+    text: "Mark as Watched"
+- assertVisible: "Marked as Watched"
+- tapOn:
+    text: "Back to Podcasts"
+
+# Verify the podcast is marked as watched
+- tapOn:
+    text: "Watch Later"
+- assertVisible: "Your Watch Later List"
+- assertNotVisible: "Exciting Podcast" # Assuming it's no longer visible after being watched
